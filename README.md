@@ -33,21 +33,33 @@ This module is focused on skill development. I recognize that different students
 
 1. Download and install the [R base system](https://www.r-project.org/) and [RStudio Desktop IDE](https://rstudio.com/products/rstudio/). Both are needed. Note that installing RStudio will not automatically install R.
 
-2. Set up an account on [GitHub](https://github.com/) and send your username to the Instructor.
+2. Set up an account on [GitHub](https://github.com/) and send your username to the Instructor (pennell@zoology.ubc.ca).
 
 
 ## Course content and schedule
 
-This module is designed 
+This module is designed to be primarily a "workshop"-style course. I will expect you to have read the assigned materials beforehand. During class, I will review some key points and we'll work through problems together.
 
+It is not necessary to bring your own datasets to work with; I know that many of you might be just starting your studies or otherwise, do not currently have datasets that are in need of cleaning up. However, if you already have data, either from your own thesis work or perhaps some other lab project, please bring it along -- it is far more motivating and interesting to work with data you really care about. 
 
 *Note:* Much of the course material is adapted from the [Data Carpentry for Biologists course](https://datacarpentry.org/semester-biology/) developed by Ethan White and Zachary Brym.
 
-
-
 ### Lecture 1 - Feb 4
 
-Introduction to the course, RStudio and GitHub
+In the first lecture, we are going to:
+
+1. Run through the objectives of the module so you can get a sense of where we are going;
+
+2. Discuss the data management challenges that you face (or will likely face) when working with data specific to your research topic;
+
+3. take a brief tour of RStudio + git/GitHub and learn how we can make them talk to one another. 
+
+
+In preparation for the first lecture, I would ask you to please do the following:
+
+1. Download and install the [R base system](https://www.r-project.org/) and the [RStudio Desktop IDE](https://rstudio.com/products/rstudio/). Both are needed. Note that installing RStudio will not automatically install R.
+
+2. If you haven't already, set up an account on [GitHub](https://github.com/) and send your username to the Instructor (pennell@zoology.ubc.ca).
 
 ### Lecture 2
 
