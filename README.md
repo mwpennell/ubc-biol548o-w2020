@@ -56,7 +56,7 @@ In preparation for the first lecture, I would ask you to please do the following
 
 ### Lecture 2
 
-Readings: [Git Basics in RStudio][https://nicercode.github.io/git/rstudio.html]
+Readings: [Git Basics in RStudio](https://nicercode.github.io/git/rstudio.html)
 
 Best practices for version control
 
