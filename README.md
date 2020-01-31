@@ -29,13 +29,6 @@ Classes will be in Biosciences 4223 on Tuesdays and Thursdays from 1500-1630.
 This module is focused on skill development. I recognize that different students will be coming from very different academic backgrounds have various levels of experience with the tools we are working with. And that's great -- we are all here to learn! As such, assessment for this module will be primary about the process (are you putting effort into developing your skillset?) and not the product (how elegant is your code?). 
 
 
-## Getting set-up
-
-1. Download and install the [R base system](https://www.r-project.org/) and [RStudio Desktop IDE](https://rstudio.com/products/rstudio/). Both are needed. Note that installing RStudio will not automatically install R.
-
-2. Set up an account on [GitHub](https://github.com/) and send your username to the Instructor (pennell@zoology.ubc.ca).
-
-
 ## Course content and schedule
 
 This module is designed to be primarily a "workshop"-style course. I will expect you to have read the assigned materials beforehand. During class, I will review some key points and we'll work through problems together.
