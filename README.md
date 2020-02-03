@@ -5,9 +5,9 @@ BIOL 548O is a short module designed to help students work with datasets more ef
 
 ## Instructor
 
-Dr. Matthew Pennell
-Assstant Professor, Department of Zoology
-Email: pennell@zoology.ubc.ca
+Dr. Matthew Pennell   
+Assistant Professor, Department of Zoology   
+Email: pennell@zoology.ubc.ca   
 Office hours: By appointment
 
 
