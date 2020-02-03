@@ -22,7 +22,7 @@ Classes will be in Biosciences 4223 on Tuesdays and Thursdays from 1500-1630.
 
 ### Grade breakdown
 
-80% Homework assignments
+80% Homework assignments   
 20% In-class participation
 
 ### A note on grading philosophy
