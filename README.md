@@ -13,7 +13,7 @@ Office hours: By appointment
 
 ## Logistics
 
-The module will run from *February 4th* to *March 5th* (2020). Note that this differs slightly from the dates in the UBC Course calendar.
+The module will run from *February 4th* to *March 5th* 2020. Note that this differs slightly from the dates in the UBC Course calendar. There will be no classes during Reading Week.
 
 Classes will be in Biosciences 4223 on Tuesdays and Thursdays from 1500-1630.
 
@@ -47,67 +47,59 @@ In the first lecture, we are going to:
 
 3. take a brief tour of RStudio + git/GitHub and learn how we can make them talk to one another. 
 
-
 In preparation for the first lecture, I would ask you to please do the following:
 
-1. Download and install the [R base system](https://www.r-project.org/) and the [RStudio Desktop IDE](https://rstudio.com/products/rstudio/). Both are needed. Note that installing RStudio will not automatically install R.
+1. Download and install the [R base system](https://www.r-project.org/) and the [RStudio Desktop IDE](https://rstudio.com/products/rstudio/). Both are needed. Note that installing RStudio will not automatically install R;
 
-2. If you haven't already, set up an account on [GitHub](https://github.com/) and send your username to the Instructor (pennell@zoology.ubc.ca).
+2. Download and install [git](https://git-scm.com/downloads);
+
+3. If you haven't already, set up an account on [GitHub](https://github.com/) and send your username to the Instructor (pennell@zoology.ubc.ca).
 
 ### Lecture 2
 
+Topic: Best practices for version control
+
 Readings: [Git Basics in RStudio](https://nicercode.github.io/git/rstudio.html)
 
-Best practices for version control
-
 ### Lecture 3
+
+Topic: Principles of tidy data
 
 Readings: 
 [R for Data Science - Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
 
 Additional Readings:
-Data organization in Spreadsheets *link to pdf*
+[Data organization in Spreadsheets (general paper)](https://github.com/mwpennell/blob/master/pdfs/Data_Organization_in_Spreadsheets.pdf)
 [Data organization in Spreadsheets (for Ecologists)](https://datacarpentry.org/spreadsheet-ecology-lesson/04-quality-control/)
 
 ### Lecture 4
 
+Topic: Transforming Data in R
+
 Readings: [R for Data Science - Transforming  Data](https://r4ds.had.co.nz/transform.html)
 
-Additional readings: https://datacarpentry.org/R-ecology-lesson/03-dplyr.html
+Additional readings: [Data Carpentry: dplyr](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
 
 ### Lecture 5 
+
+Topic: Relational Databases
 
 Readings: [R for Data Science - Relational Data](https://r4ds.had.co.nz/relational-data.html)
 
 Additional readings:
-ICYI: SQL
+[Data Carpentry - Working with SQL databases in R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
 ### Lecture 6
 
-Automating analyses
+Topic: Metadata
 
-Functions, Loops, and Maps
+### Lecture 7
 
-### Lecture 5
+Topic: Automating analyses
 
-Writing functions
-For loops
-Map function
+### Lecture 8
 
-### Lecture 6 -       
-
-Working with text
-Regular Expressions
-
-### Lecture 7 - March 3
-
-Good Metadata
-Best practices for sharing data
-
-### Lecture 8 - March 5
-
-Using (R)Markdown and knitr to generate literate code 
-
+Topic: Using RMarkdown to generate reproducible workflows
 
 
 ## Additional resources
@@ -121,7 +113,6 @@ I regularly refer to all 3 of the following books and cannot recommend them stro
 
 3. Stephen Haddock and Casey Dunn. [Practical Computing for Biologists](http://practicalcomputing.org/)
 
-### Websites
 
 
 
