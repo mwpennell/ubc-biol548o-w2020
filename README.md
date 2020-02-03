@@ -55,20 +55,20 @@ In preparation for the first lecture, I would ask you to please do the following
 
 3. If you haven't already, set up an account on [GitHub](https://github.com/) and send your username to the Instructor (pennell@zoology.ubc.ca).
 
-### Lecture 2
+### Lecture 2 - Feb 6
 
 Topic: Best practices for version control
 
 Readings: [Git Basics in RStudio](https://nicercode.github.io/git/rstudio.html)
 
-### Lecture 3
+### Lecture 3 - Feb 11
 
 Topic: Principles of tidy data
 
-Readings: 
+Readings:   
 [R for Data Science - Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
 
-Additional Readings:
+Additional Readings:  
 [Data organization in Spreadsheets (general paper)](https://github.com/mwpennell/blob/master/pdfs/Data_Organization_in_Spreadsheets.pdf)
 [Data organization in Spreadsheets (for Ecologists)](https://datacarpentry.org/spreadsheet-ecology-lesson/04-quality-control/)
 
@@ -76,17 +76,20 @@ Additional Readings:
 
 Topic: Transforming Data in R
 
-Readings: [R for Data Science - Transforming  Data](https://r4ds.had.co.nz/transform.html)
+Readings:   
+[R for Data Science - Transforming  Data](https://r4ds.had.co.nz/transform.html)
 
-Additional readings: [Data Carpentry: dplyr](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
+Additional readings:   
+[Data Carpentry: dplyr](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
 
 ### Lecture 5 
 
 Topic: Relational Databases
 
-Readings: [R for Data Science - Relational Data](https://r4ds.had.co.nz/relational-data.html)
+Readings:    
+[R for Data Science - Relational Data](https://r4ds.had.co.nz/relational-data.html)
 
-Additional readings:
+Additional readings:   
 [Data Carpentry - Working with SQL databases in R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
 ### Lecture 6
