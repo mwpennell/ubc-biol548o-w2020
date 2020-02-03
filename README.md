@@ -72,7 +72,7 @@ Additional Readings:
 [Data organization in Spreadsheets (general paper)](https://github.com/mwpennell/blob/master/pdfs/Data_Organization_in_Spreadsheets.pdf)
 [Data organization in Spreadsheets (for Ecologists)](https://datacarpentry.org/spreadsheet-ecology-lesson/04-quality-control/)
 
-### Lecture 4
+### Lecture 4 - Feb 13
 
 Topic: Transforming Data in R
 
@@ -82,7 +82,7 @@ Readings:
 Additional readings:   
 [Data Carpentry: dplyr](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
 
-### Lecture 5 
+### Lecture 5 - Feb 25
 
 Topic: Relational Databases
 
@@ -92,15 +92,15 @@ Readings:
 Additional readings:   
 [Data Carpentry - Working with SQL databases in R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
-### Lecture 6
+### Lecture 6 - Feb 27
 
 Topic: Metadata
 
-### Lecture 7
+### Lecture 7 - Mar 3
 
 Topic: Automating analyses
 
-### Lecture 8
+### Lecture 8 - Mar 5
 
 Topic: Using RMarkdown to generate reproducible workflows
 
