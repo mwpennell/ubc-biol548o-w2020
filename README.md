@@ -57,7 +57,7 @@ In preparation for the first lecture, I would ask you to please do the following
 
 ### Lecture 2 - Feb 6
 
-Topic: Best practices for version control
+Topic: Best practices for version control and project organization
 
 Readings:    
 [Git Basics in RStudio](https://nicercode.github.io/git/rstudio.html)
@@ -85,7 +85,7 @@ Additional readings:
 
 ### Lecture 5 - Feb 25
 
-Topic: Relational Databases
+Topic: Relational databases
 
 Readings:    
 [R for Data Science - Relational Data](https://r4ds.had.co.nz/relational-data.html)
@@ -95,15 +95,15 @@ Additional readings:
 
 ### Lecture 6 - Feb 27
 
-Topic: Metadata
+Topic: Working with text (or, why regular expressions are your best friends)
 
 ### Lecture 7 - Mar 3
 
-Topic: Automating analyses
+Topic: Automating analyses 
 
 ### Lecture 8 - Mar 5
 
-Topic: Using RMarkdown to generate reproducible workflows
+Topic: Open class (RMarkdown? R packages?)
 
 
 ## Additional resources
