@@ -9,6 +9,7 @@ Dr. Matthew Pennell
 Assistant Professor, Department of Zoology   
 Email: pennell@zoology.ubc.ca   
 Office hours: By appointment
+Office: Biodiversity 208
 
 
 ## Logistics
