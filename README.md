@@ -65,7 +65,11 @@ Readings:
 
 [Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture2-versioncontrol.md)
 
-Assignment: Complete Exercises 1-4 in the Lecture. 
+Assignment:   
+Complete Exercises 1-4 in the Lecture. 
+
+Additional Readings:   
+[Happy git with R (ebook)](https://happygitwithr.com/) by UBC Stat 545 instructors
 
 
 ### Lecture 3 - Feb 11
