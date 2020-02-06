@@ -1,15 +1,21 @@
 ## Introduction
 
-### Motivation
+### What is version control?
 
-* Who has a directory on their computer with a bunch of filenames
-    * [Like this?](http://www.phdcomics.com/comics/archive.php?comicid=1531)
-    * [Or like this?](http://www.phdcomics.com/comics/archive.php?comicid=1323)
-* Get rid of messy folders and track changes to things like
-data files and code in a more manageable way.
+Version control is not any one tool or technique. Rather, it is a general approach to computational research that facilitates reliability and efficiency. In many ways, it is the computational analog of the tried, tested, and true practices for keeping good scientific notebooks in laboratory sciences.
+
+Version control is pretty simple. For each different file that that is part of your project, you have:
+
+* A system for keeping track of the file version  
+* A complete history of all changes that have ever been made to the file  
+* Ability to go back to any previous version
+
+Researchers have developed many (perhaps idiosyncratic) to acheive (or partially acheive) these three goals that may involve many different tools. For example, many scientists use Dropbox and then save each version of a [file with a different name](http://phdcomics.com/comics/archive.php?comicid=1531).  
+
+In this class, we will be using the software git and the online service GitHub as a version control system.
 
 
-### Benefits of version control
+### Benefits of using git as a Version control system
 
 * Track changes (*but better*)
     * Tracks every change ever made in groups called commits
@@ -23,39 +29,22 @@ data files and code in a more manageable way.
         * See what changes others have made
         * Everyone has the most recent version of everything
 
-## Version control using Git & RStudio
+### How git works (broadly speaking)
 
-### Create a Git repo
+* There is only file for each file (name isn't changed with each change to the contents)  
+* The entire "tree" of changes is stored (in a hidden folder of your computer). Note that git can only keep track of changes inside text files; PDFs, .docx, .xls files, etc. can be added to git but the system can't see inside of them
+* A (simplified) version of the git workflow is as follows:
+    * Files are in your working directory (folder on your computer)
+    * When you have made changes to a file and have saved it, using `git add` moves the changed files to the "staging area"
+    * When you have complete a bundle of changes (we can talk about what this means together), you can use `git commit` to move the files from the staging area into your repository. These changes are now part of the history recorded on your local computer
+    * When (and if!) you want to move files to an online repository (for example, GitHub), you can use `git push` to sync your online repository with the repository on your local machine. `git pull` does the opposite -- it syncs your local machine with the online repository.
+    
+### Tour of GitHub
 
-1. Navigate to Github in a web browser and login.
-2. Click the `+` at the upper right corner of the page and choose `New repository`.
-3. Choose the class organization (e.g., `dcsemester`) as the `Owner` of the
-   repo.
-4. Fill in a `Repository name` that follows the form `FirstnameLastname`.
-5. Select `Private`.
-6. Select `Initialize this repository with a README`.
-7. Click `Create Repository`.
-
-### Connect to the Git repo in RStudio
-
-1. From new GitHub repository, click green `Clone or download` button ->
-   Click the `Copy to clipboard` button.
-2. In RStudio, File -> New Project -> Version Control -> Git
-3. Paste copied URL in `Repository URL:`. 
-4. Leave `Project directory name:` blank; automatically given repo name. 
-5. Choose where to `Create project as subdirectory of:`.
-6. Click `Create Project`.
-7. Check to make sure you have a `Git` tab in the upper right window.
-
-### Introduce yourself to Git
-
-1. Git tab -> `More` -> `Shell`
-2. `git config --global user.name "[name]"`
-3. `git config --global user.email "[email]"` (same as GitHub account email).
-
-> That was [Exercise 1 - Set-up Git]({{ site.baseurl }}/exercises/Version-control-basic-set-up-git-R/).
-> Have students confirm that this all worked and fix any issues.
-
+* Commit history
+* Branches
+* Settings (private vs. public)
+* Issues
 
 ### First commits
 
@@ -134,10 +123,11 @@ fish_data_cat = fish_data %>%
         * The new version of the line is shown as added.
 
 
-> Do [Exercise 2 - First Solo Commit]({{ site.baseurl }}/exercises/Version-control-basic-first-solo-commit-R/) and
-> [Exercise 3 - Second Solo Commit]({{ site.baseurl }}/exercises/Version-control-basic-second-solo-commit-R/)
+### Exercise 1
 
-> **Instructor also do exercises**
+In `fish-analysis.R`, add a comment above the creation of `fish_data` describing what this code does. 
+
+Commit this change to version control with a good commit message. Then check to see if you can see this commit in the history.
 
 
 ### Committing multiple files
@@ -161,9 +151,16 @@ fish_data = read.csv("data/Gaeta_etal_CLC_data.csv")
 
 * Commit: `Move data file into subdirectory`
 
-> Do [Exercise 4 - Commit Multiple Files]({{ site.baseurl }}/exercises/Version-control-basic-commit-multiple-files-R/).
+### Exercise 2
 
-> **Instructor also do exercise**
+After talking to a colleague, you realize that
+`Gaeta_etal_CLC_data.csv` is only the first in a series of similar files that you will receive. To help keep track of files, you decide to number them. Rename the `Gaeta_etal_CLC_data.csv` file to `Gaeta_etal_CLC_data_1.csv` manually, using the Files tab in RStudio. You’ll also need to change the first line of `fish-analysis.R` so that the script will still work. 
+
+To include all of these changes in a single commit, stage both data files and the saved R script and then commit with a good commit message. 
+
+*Git will initially think you've deleted `Gaeta_etal_CLC_data.csv` and
+created a new file `Gaeta_etal_CLC_data_1.csv`. But once you click on
+both the old and new files to stage them, git will recognize this by making the two files into one and marking this with an `R`.*
 
 ### Git as a time machine
 
@@ -203,41 +200,33 @@ fish_data_cat = fish_data %>%
     * Public and private hosted repositories
     * Private free for students and academics
 	* https://education.github.com/
-        * For the assignment, we're using private repositories that we made at
-          the beginning.
+        * For the assignment, we're using private repositories that we made at the beginning.
 
 ### Push to a remote
 
 * `Push` sends your recent commits to the `origin` remote.
 
-> Draw push arrow on diagram on board from local to `origin`.
-
 * Before a `Push` your commits show in your local history but not on the remote.
-
-> Show local commit history and lack of history in remote.
 
 * To `Push` to your remote, select the `Push` button at the top of the `Git`
   tab.
 * Now your changes and commit history are also stored on the remote.
 
-> Show local commits now on `origin`.
 
+### Exercise 3
 
-> Do [Exercise 5 - Pushing Changes]({{ site.baseurl }}/exercises/Version-control-basic-pushing-changes-R/).
+Pair up with one of your colleagues and invite each other to be collaborators on your 548O-username repo. (You can remove them as collaborators once you've completed the exercise; I am assuming you haven't put any sensitive material in there already -- if you have let your instructor know).
 
-> Have students email a link to their repo to their instructor once they have
-> finished Pushing Changes
->
-> The instructor should then commit the following code to their repo
-> with the commit message: `Plot histogram of scale length by categorical size`
+Each of you will `clone` each others Repositories.
 
-```
-ggplot(fish_data_cat, aes(x = scalelength, fill = length_cat)) +
-  geom_histogram()
-```
+* Go the *Tools* tab -> *Shell*
+* Type `cd..` to change directory 
+* Type `git clone <url-of-your-colleagues-repo>
 
-> Either you (logged in as another user) or your teaching partner should make
-> the same change to your respository
+Now, you have access to their repository. Open up the .Rproj file in their repository.
+
+Make a minor edit to their `README.md` file (maybe send them a note of encouragement for getting this far). Save, add, commit, and push the change to their remote repository.
+
 
 ### Pulling
 
@@ -246,93 +235,12 @@ ggplot(fish_data_cat, aes(x = scalelength, fill = length_cat)) +
   actually have the most recent version
 * Makes it easy to see what collaborators have done
 * Automatically combines non-overlapping changes
-* While I've been talking, a collaborator has added a plot of scale size and fish length to the code.
-
-> Show `origin` with collaborator commit.
-
-> Add collaborator local repo to diagram and `pull` arrow from `origin` to
-> locals.
- 
-* `Pull` the changes from the remote repo with the `Pull` button on the Git tab
-
-> Show updates to history following `Pull` and run code
-
-> Do Tasks 3-6 in [Exercise 6 - Pulling and Pushing]({{ site.baseurl }}/exercises/Version-control-basic-pulling-and-pushing-R/).
 
 
-### Merges
+### Exercise 4
 
-> Demo merges either with a partner or by logging into GitHub as another user in
-> the browser.
+`Pull` the changes your colleague made to your remote repository.
 
-* What happens if two people make changes at the same time?
-    * If they edit different parts of the code git will combine them automatically
-    * If they edit the same areas of the code this requires human intervention
-* Merges
+If you can see their changes to your `README.md` file, you can now remove them as a collaborator.
 
-* You decide to change the number of histogram bins to 10
 
-<pre>
-geom_histogram(<b>bins = 10</b>)
-</pre>
-
-* Your collaborator reassesses the measurement device and decides it is accurate
-  down to 0.5 mm and pushes the change to the remote repository [make this
-  change in the remote]
-
-<pre>
-filter(scalelength >= <b>0.5</b>)
-</pre>
-
-* You try to push your change
-* Get an error that shows someone else has made a change & you need to
-  incorporate it to push
-* Pull
-* Merge happens automatically
-* You have both sets of changes
-* Remote still only has collaborators changes
-* Push to add the merged version to the remote
-
-### Merge conflicts
-
-* If both you and your collaborator edit the same location in the code git
-  doesn't know how to combine the changes.
-* A human has to make this kind of decision.
-
-* You decide to change `"big"` to `"large"`
-
-<pre>
-mutate(length_cat = ifelse(length > 300, <b>"large"</b>, "small"))
-</pre>
-
-* Your collaborator changes the size threshold and pushes to the remote
-
-<pre>
-mutate(length_cat = ifelse(length > 250, <b>"big"</b>, "small"))
-</pre>
-
-* You attempt to push your changes
-* Merge conflict when pulling collaborators changes
-* This shows as `U` for "unmerged" in RStudio
-* First block of code is your version
-* Second block is the version on the remote
-* Combine into a single block that includes everything
-
-```
-mutate(length_cat = ifelse(length > 250, "large", "small"))
-```
-
-* Click check box next to file
-* Commit indicating that it is a merge
-* Still not on remote yet
-* Push
-
-### Full GitHub flow
-
-* Collaborating on Github can get more complex with "forks" and "branches.
-
-> *Optional*: Redraw diagram with local, `origin`, and `upstream`. Arrows from
-> `origin` to/from `upstream` are pull requests and merges.
-
-> Show an [example of a working repository]({{ site.github.repo }}) with
-> branches and forks. Navigate to pull requests.
