@@ -63,6 +63,11 @@ Topic: Best practices for version control and project organization
 Readings:    
 [Git Basics in RStudio](https://nicercode.github.io/git/rstudio.html)
 
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture2-versioncontrol.md)
+
+[Assignment](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/assignments/lecture2-versioncontrol.md)
+
+
 ### Lecture 3 - Feb 11
 
 Topic: Principles of tidy data
