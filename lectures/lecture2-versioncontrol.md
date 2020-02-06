@@ -39,12 +39,14 @@ In this class, we will be using the software git and the online service GitHub a
     * When you have complete a bundle of changes (we can talk about what this means together), you can use `git commit` to move the files from the staging area into your repository. These changes are now part of the history recorded on your local computer
     * When (and if!) you want to move files to an online repository (for example, GitHub), you can use `git push` to sync your online repository with the repository on your local machine. `git pull` does the opposite -- it syncs your local machine with the online repository.
     
-### Tour of GitHub
+## Tour of GitHub
 
 * Commit history
 * Branches
 * Settings (private vs. public)
 * Issues
+
+## Practice with git
 
 ### First commits
 
@@ -151,6 +153,7 @@ fish_data = read.csv("data/Gaeta_etal_CLC_data.csv")
 
 * Commit: `Move data file into subdirectory`
 
+
 ### Exercise 2
 
 After talking to a colleague, you realize that
@@ -189,8 +192,6 @@ fish_data_cat = fish_data %>%
 
 ## GitHub Remotes
 
-> Draw diagram to link local machine with GitHub `origin`.
-
 * So far we've worked with a local `Git` repository.
 * One of the big benefits of version control is easy collaboration.
 * To do this, we synchronize our local changes with a remote repository called
@@ -205,9 +206,7 @@ fish_data_cat = fish_data %>%
 ### Push to a remote
 
 * `Push` sends your recent commits to the `origin` remote.
-
 * Before a `Push` your commits show in your local history but not on the remote.
-
 * To `Push` to your remote, select the `Push` button at the top of the `Git`
   tab.
 * Now your changes and commit history are also stored on the remote.
