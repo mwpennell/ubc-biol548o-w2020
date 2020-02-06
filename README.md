@@ -65,7 +65,7 @@ Readings:
 
 [Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture2-versioncontrol.md)
 
-Assignment: Complete Exercises 1-4 in the Lecture.
+Assignment: Complete Exercises 1-4 in the Lecture. 
 
 
 ### Lecture 3 - Feb 11
