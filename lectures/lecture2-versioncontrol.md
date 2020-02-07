@@ -220,7 +220,7 @@ Each of you will `clone` each others Repositories.
 
 * Go the *Tools* tab -> *Shell*
 * Type `cd..` to change directory 
-* Type `git clone <url-of-your-colleagues-repo>
+* Type `git clone <url-of-your-colleagues-repo>`
 
 Now, you have access to their repository. Open up the .Rproj file in their repository.
 
