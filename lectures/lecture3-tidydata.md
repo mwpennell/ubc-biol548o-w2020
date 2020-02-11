@@ -14,6 +14,9 @@ or examination. So how do you make **untidy** data **tidy**?
   
 We now import the untidy data that was presented in the three film-specific word count tables that is described [here](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md).
 
+
+
+
 I assume that data can be found as three plain text, delimited files, one for each film. How to liberate data from spreadsheets or tables in word processing documents is beyond the scope of this tutorial.
 
 The files live here in this repo, which you could clone as a new RStudio Project. Get them into your current project in a `data` subdirectory with your favorite method:
@@ -170,34 +173,31 @@ write_csv(lotr_tidy, path = file.path("data", "lotr_tidy.csv"))
 You can inspect this delimited file here:
   [lotr\_tidy.csv](data/lotr_tidy.csv).
 
-## Exercises
+## Exercise 1
 
 The word count data is given in these two **untidy** and gender-specific
 files:
   
-  - [Female.csv](data/Female.csv)
-- [Male.csv](data/Male.csv)
+- [Female.csv](https://github.com/jennybc/lotr-tidy/tree/master/data/Female.csv)
+- [Male.csv](https://github.com/jennybc/lotr-tidy/tree/master/data/Male.csv)
 
 Write an R script that reads them in and writes a single tidy data frame
 to file. Literally, reproduce the `lotr_tidy` data frame and the
 `lotr_tidy.csv` data file from above.
 
-Write R code to compute the total number of words spoken by each race
-across the entire trilogy. Do it two ways:
+Write R code to compute the total number of words spoken by each race across the entire trilogy. Do it two ways:
   
-  - Using film-specific or gender-specific, untidy data frames as the
-input data.
+- Using film-specific or gender-specific, untidy data frames as the input data.
 - Using the `lotr_tidy` data frame as input.
 
-Reflect on the process of writing this code and on the code itself.
-Which is easier to write? Easier to read?
+Reflect on the process of writing this code and on the code itself. Which is easier to write? Easier to read?
   
   Write R code to compute the total number of words spoken in each film.
 Do this by copying and modifying your own code for totalling words by
 race. Which approach is easier to modify and repurpose – the one based
 on multiple, untidy data frames or the tidy data?
   
-  ## Take home message
+## Summary of this section 
   
   It is untidy to have have data parcelled out across different files or
 data frames. We used `dplyr::bind_rows()` above to combine film-specific
@@ -226,3 +226,95 @@ performance problem, keep calm and tidy on.
 - Tidying operations are unfamiliar to many of us and we avoid them,
 subconsciously preferring to faff around with other workarounds that
 are more familiar.
+
+## Part 2
+
+Enough about tidy data. How do I make it messy?
+
+
+``` r
+library(tidyverse)
+#> Loading tidyverse: ggplot2
+#> Loading tidyverse: tibble
+#> Loading tidyverse: tidyr
+#> Loading tidyverse: readr
+#> Loading tidyverse: purrr
+#> Loading tidyverse: dplyr
+#> Conflicts with tidy packages ----------------------------------------------
+#> filter(): dplyr, stats
+#> lag():    dplyr, stats
+lotr_tidy <- read_csv(file.path("data", "lotr_tidy.csv"))
+#> Parsed with column specification:
+#> cols(
+#>   Film = col_character(),
+#>   Race = col_character(),
+#>   Gender = col_character(),
+#>   Words = col_integer()
+#> )
+
+lotr_tidy
+#> # A tibble: 18 × 4
+#>                          Film   Race Gender Words
+#>                         <chr>  <chr>  <chr> <int>
+#> 1  The Fellowship Of The Ring    Elf Female  1229
+#> 2  The Fellowship Of The Ring Hobbit Female    14
+#> 3  The Fellowship Of The Ring    Man Female     0
+#> 4              The Two Towers    Elf Female   331
+#> 5              The Two Towers Hobbit Female     0
+#> 6              The Two Towers    Man Female   401
+#> 7      The Return Of The King    Elf Female   183
+#> 8      The Return Of The King Hobbit Female     2
+#> 9      The Return Of The King    Man Female   268
+#> 10 The Fellowship Of The Ring    Elf   Male   971
+#> 11 The Fellowship Of The Ring Hobbit   Male  3644
+#> 12 The Fellowship Of The Ring    Man   Male  1995
+#> 13             The Two Towers    Elf   Male   513
+#> 14             The Two Towers Hobbit   Male  2463
+#> 15             The Two Towers    Man   Male  3589
+#> 16     The Return Of The King    Elf   Male   510
+#> 17     The Return Of The King Hobbit   Male  2673
+#> 18     The Return Of The King    Man   Male  2459
+
+## practicing with spread: let's get one variable per Race
+lotr_tidy %>% 
+  spread(key = Race, value = Words)
+#> # A tibble: 6 × 5
+#>                         Film Gender   Elf Hobbit   Man
+#> *                      <chr>  <chr> <int>  <int> <int>
+#> 1 The Fellowship Of The Ring Female  1229     14     0
+#> 2 The Fellowship Of The Ring   Male   971   3644  1995
+#> 3     The Return Of The King Female   183      2   268
+#> 4     The Return Of The King   Male   510   2673  2459
+#> 5             The Two Towers Female   331      0   401
+#> 6             The Two Towers   Male   513   2463  3589
+
+## practicing with spread: let's get one variable per Gender
+lotr_tidy %>% 
+  spread(key = Gender, value = Words)
+#> # A tibble: 9 × 4
+#>                         Film   Race Female  Male
+#> *                      <chr>  <chr>  <int> <int>
+#> 1 The Fellowship Of The Ring    Elf   1229   971
+#> 2 The Fellowship Of The Ring Hobbit     14  3644
+#> 3 The Fellowship Of The Ring    Man      0  1995
+#> 4     The Return Of The King    Elf    183   510
+#> 5     The Return Of The King Hobbit      2  2673
+#> 6     The Return Of The King    Man    268  2459
+#> 7             The Two Towers    Elf    331   513
+#> 8             The Two Towers Hobbit      0  2463
+#> 9             The Two Towers    Man    401  3589
+
+## practicing with spread ... and unite: let's get one variable per combo of Race and Gender
+lotr_tidy %>% 
+  unite(Race_Gender, Race, Gender) %>% 
+  spread(key = Race_Gender, value = Words)
+#> # A tibble: 3 × 7
+#>                         Film Elf_Female Elf_Male Hobbit_Female Hobbit_Male
+#> *                      <chr>      <int>    <int>         <int>       <int>
+#> 1 The Fellowship Of The Ring       1229      971            14        3644
+#> 2     The Return Of The King        183      510             2        2673
+#> 3             The Two Towers        331      513             0        2463
+#> # ... with 2 more variables: Man_Female <int>, Man_Male <int>
+
+## to do: show splitting into film-specific data frames?
+```
