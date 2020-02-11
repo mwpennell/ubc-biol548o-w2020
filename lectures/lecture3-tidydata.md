@@ -6,7 +6,15 @@ An important aspect of “writing data for computers” is to make your data
 - Each column is a variable
 - Each row is an observation
 
-But unfortunately, **untidy** data abounds. In fact, we often inflict it
+A few things are important to note here: 
+
+First, the optimal level of **tidy**ness depends on the exact use case. You want to find the optimal level of **tidyness** for your particular use case. **Tidy** data is also often referred to as "long" data since it makes the data table longer that it might typically be.
+
+Second, this definition of tidy data essentially presumes that all the information in your data can be encoded in plain ("flat"") text files (e.g., in tab or comma-delimited formats). Microsoft Excel, Google Sheets, Numbers, etc. are truly awesome and useful tools. While I would encourage you to use these for data entry, you should not encode any additional information in the cells themselves. For examples, it is best not: i) to use colour highlighting to identify variables; ii) use formulas to impute data cells (we'll do this in R, instead); or iii) use creative spacing to separate sections. This information will be lost as you try and tidy your data.
+
+Third, you should always leave your data pretty much as you found it in your spreadsheets (there are always exceptions) and do any modifications and reformatting in R using the tools we will learn below. And related to this, it is best to write scripts that modify the original data rather than change things in the console or overwrite the original file. That way, it is i) transparent what has been done to the data (you can also keep it under version control) and it is easy to modify the script to reshape it in a different way.
+
+While tidy data is a good ideal to strive towards, **untidy** data abounds. In fact, we often inflict it
 on ourselves, because untidy formats are more attractive for data entry
 or examination. So how do you make **untidy** data **tidy**?
   
@@ -14,18 +22,15 @@ or examination. So how do you make **untidy** data **tidy**?
   
 We now import the untidy data that was presented in the three film-specific word count tables that is described [here](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md).
 
+I assume that data can be found as three plain text, delimited files, one for each film. 
 
-
-
-I assume that data can be found as three plain text, delimited files, one for each film. How to liberate data from spreadsheets or tables in word processing documents is beyond the scope of this tutorial.
-
-The files live here in this repo, which you could clone as a new RStudio Project. Get them into your current project in a `data` subdirectory with your favorite method:
+Get them into your current project in a `data` subdirectory with your favorite method:
   
   - [The\_Fellowship\_Of\_The\_Ring.csv](https://github.com/jennybc/lotr-tidy/tree/master/data/The_Fellowship_Of_The_Ring.csv)
 - [The\_Two\_Towers.csv](https://github.com/jennybc/lotr-tidy/tree/master/data/The_Two_Towers.csv)
 - [The\_Return\_Of\_The\_King.csv](https://github.com/jennybc/lotr-tidy/tree/master/data/The_Return_Of_The_King.csv)
 
-We bring the data into data frames or tibbles, one per film, and do some inspection.
+We bring the data into data frames or tibbles (the preferred data format of the **tidyverse**) using the function `read_csv`, one per film, and do some inspection.
 
 ``` r
 library(tidyverse)
@@ -110,6 +115,10 @@ A good guiding principle is to glue the pieces together as early as
 possible, because it’s easier and more efficient to tidy a single object
 than 20 or 1000.
 
+## Exercise 1
+
+Write the joined untidy data to a file in the `data` folder using the function `write_csv()`. Add this and the original files to your repository. Commit and push.
+
 ## Tidy the untidy Lord of the Rings data
 
 We are still violating one of the fundamental principles of **tidy
@@ -117,8 +126,11 @@ data**. “Word count” is a fundamental variable in our dataset and it’s
 currently spread out over two variables, `Female` and `Male`.
 Conceptually, we need to gather up the word counts into a single
 variable and create a new variable, `Gender`, to track whether each
-count refers to females or males. We use the `gather()` function from
+count refers to females or males. We use the `pivot_longer()` function from
 the tidyr package to do this.
+
+Note: There has been a recent (2019) change to the syntax of **tidyr**. `pivot_longer()` has replaced the `gather()` function
+
 
 ``` r
 lotr_tidy <-
@@ -146,6 +158,33 @@ lotr_tidy
 #> 17 The Return Of The King     Hobbit Male    2673
 #> 18 The Return Of The King     Man    Male    2459
 ```
+or now...
+```r
+lotr_tidy <-
+  pivot_longer(lotr_untidy, cols=c(Female, Male), names_to = 'Gender', values_to = 'Words')
+lotr_tidy <- arrange(lotr_tidy, Gender)
+# A tibble: 18 x 4
+#>   Film                       Race   Gender Words
+#>   <chr>                      <chr>  <chr>  <dbl>
+#> 1 The Fellowship Of The Ring Elf    Female  1229
+#> 2 The Fellowship Of The Ring Hobbit Female    14
+#> 3 The Fellowship Of The Ring Man    Female     0
+#> 4 The Two Towers             Elf    Female   331
+#> 5 The Two Towers             Hobbit Female     0
+#> 6 The Two Towers             Man    Female   401
+#> 7 The Return Of The King     Elf    Female   183
+#> 8 The Return Of The King     Hobbit Female     2
+#> 9 The Return Of The King     Man    Female   268
+#> 10 The Fellowship Of The Ring Elf    Male     971
+#> 11 The Fellowship Of The Ring Hobbit Male    3644
+#> 12 The Fellowship Of The Ring Man    Male    1995
+#> 13 The Two Towers             Elf    Male     513
+#> 14 The Two Towers             Hobbit Male    2463
+#> 15 The Two Towers             Man    Male    3589
+#> 16 The Return Of The King     Elf    Male     510
+#> 17 The Return Of The King     Hobbit Male    2673
+#> 18 The Return Of The King     Man    Male    2459
+```
 
 Tidy data … mission accomplished\!
   
@@ -157,6 +196,8 @@ value of `Words` came from `Female` or `Male`. All other variables, such
 as `Film`, remain unchanged and are simply replicated as needed. The
 documentation for `gather()` gives more examples and documents
 additional arguments.
+
+Or, using the new language of `pivot_longer()`, we use *values_to* instead of *values* and instead of a *key* we specify *names_to*. We now also need to explicity write *cols_to* to designate the columns 'Male' and 'Female'.
 
 ## Write the tidy data to a delimited file
 
@@ -170,10 +211,7 @@ with this data.
 write_csv(lotr_tidy, path = file.path("data", "lotr_tidy.csv"))
 ```
 
-You can inspect this delimited file here:
-  [lotr\_tidy.csv](data/lotr_tidy.csv).
-
-## Exercise 1
+## Exercise 2
 
 The word count data is given in these two **untidy** and gender-specific
 files:
@@ -190,12 +228,11 @@ Write R code to compute the total number of words spoken by each race across the
 - Using film-specific or gender-specific, untidy data frames as the input data.
 - Using the `lotr_tidy` data frame as input.
 
+**Hint**: use the code presented [here](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md) and on the [RStudio data cheat sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf). We haven't covered this yet but will do so next class. 
+
 Reflect on the process of writing this code and on the code itself. Which is easier to write? Easier to read?
   
-  Write R code to compute the total number of words spoken in each film.
-Do this by copying and modifying your own code for totalling words by
-race. Which approach is easier to modify and repurpose – the one based
-on multiple, untidy data frames or the tidy data?
+Add, commit, and push the tidy versions of your data to GitHub.
   
 ## Summary of this section 
   
@@ -316,5 +353,8 @@ lotr_tidy %>%
 #> 3             The Two Towers        331      513             0        2463
 #> # ... with 2 more variables: Man_Female <int>, Man_Male <int>
 
-## to do: show splitting into film-specific data frames?
 ```
+
+## Exercise 3:
+
+Untidy your tidy using the `pivot_wider()` function instead of `spread()`. Save this as its own .csv file called `data/lotr_untidy_pivot.csv`. Add, commit, and push.
