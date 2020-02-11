@@ -79,6 +79,8 @@ Topic: Principles of tidy data
 Readings:   
 [R for Data Science - Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
 
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture3-tidydata.md)
+
 Additional Readings:  
 [Data organization in Spreadsheets (general paper)](https://github.com/mwpennell/blob/master/pdfs/Data_Organization_in_Spreadsheets.pdf)   
 [Data organization in Spreadsheets (for Ecologists)](https://datacarpentry.org/spreadsheet-ecology-lesson/04-quality-control/)
