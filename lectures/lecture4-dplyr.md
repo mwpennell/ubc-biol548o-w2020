@@ -2,18 +2,16 @@
 
 * We will be working with data from the Portal Project.
     * Long-term experimental study of small mammals in Arizona.
-    * Download `surveys`, `species`, and `plots` from `data` into folder.
-    * Need to know where the data is: Right click -> `Save link as`.
-
-* Start/open a project (modeling good practice)
+    * Download `surveys`, `species`, and `plots` from `data` into folder of the class repository and put them in the `data` folder of your repository.
+    
 
 * Dataset is composed of three tables.
 * Load these into `R` using `read_csv()`.
 
 ```
-surveys <- read_csv("surveys.csv")
-species <- read_csv("species.csv")
-plots <- read_csv("plots.csv")
+surveys <- read_csv("data/surveys.csv")
+species <- read_csv("data/species.csv")
+plots <- read_csv("data/plots.csv")
 ```
 
 * Display data by clicking on it in `Environment`
@@ -33,20 +31,26 @@ plots <- read_csv("plots.csv")
 
 ### Packages
 
-* Main way that reusable code is shared in R
-* Combination of code, data, and documentation
-* R has a rich ecosystem of packages for data manipulation & analysis
-* Download and install packages with the R console:
-    * `install.packages("dplyr")`
-* Using a package:
-    * Load all of the functions in the package: `library("dplyr")`
+Today we are going to be using the `dplyr` package, which comes bundled as part of the `tidyverse`.
+
+You can either load `dplyr` on its own
+```
+library(dplyr)
+```
+Or just bring the whole tidyverse along for the ride
+```
+library(tidyverse)
+```
+For the following we are going to be using multiple packages from the tidyverse so you may as well load the whole thing.
+
+**Cool trick:** you can call functions from a package without loading it using the `::` notation. For example,`dplyr::select()` allows you to use the `select()` function even if `dplyr` isn't loaded. Why would you want to do this? First, it saves memory (potentially important if you are loading in a ton of packages and data) and second, it is useful if multiple packages have functions with the same names (which happens more often than you might think).
 
 ### Basic `dplyr`
 
 * Modern data manipulation library for R
 
 ```
-surveys <- read_csv("surveys.csv")
+surveys <- read_csv("data/surveys.csv")
 ```
 
 * Select a subset of columns.
@@ -99,7 +103,7 @@ carbon storage of shrubs. She has conducted an experiment looking at the effect
 of three different treatments on shrub volume at four different locations. She
 has placed the data file on the web for you to download:
 
-* [Shrub dimensions data]({{ site.baseurl }}/data/shrub-volume-data.csv)
+* [Shrub dimensions data](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/data/shrub-volume-data.csv)
 
 Download this into your `data` folder and get familiar with the data by
 importing it using `read_csv()` and then:
@@ -107,15 +111,13 @@ importing it using `read_csv()` and then:
 1. Check the column names in the data using the function `names()`.
 2. Use `str()` to show the structure of the data frame and its individual 
    columns.
-3. Print out the first few rows of the data using the function `head()`.
 
    *Use `dplyr` to complete the remaining tasks.*
-4. Select the data from the length column and print it out.
-5. Select the data from the site and experiment columns and print it out.
-6. Filter the data for all of the plants with heights greater than 5 and
+3. Select the data from the length column and print it out.
+4. Select the data from the site and experiment columns and print it out.
+5. Filter the data for all of the plants with heights greater than 5 and
    print out the result.
-7. Create a new data frame called `shrub_data_w_vols` that includes all of the
-   original data and a new column containing the volumes, and display it.
+6. Create a new **tibble** or **data.frame** called `shrub_data_w_vols` that includes all of the original data and a new column containing the volumes, and display it.
    
 Add, commit, and push your code to GitHub.
 
@@ -192,9 +194,7 @@ ds_weight_by_year <- summarize(ds_data_by_year,
 
 ### Exercise 2
 
-Download a copy of the
-[Portal Teaching Database surveys table](https://ndownloader.figshare.com/files/2292172)
-and load it into R using `read.csv()`.
+In this excercise you will use the `survey` data you downloaded above.
 
 ***Do not use pipes for this exercise.***
 
@@ -258,7 +258,7 @@ ds_weight_by_year <- surveys %>%
 
 ### Exercise 3 
 
-Using the Portal dataset you downloaded in Exercise 2, use pipes (`%>%`) to combine the following operations to manipulate the data.
+Again working with the `survey`, use pipes (`%>%`) to combine the following operations to manipulate the data.
 
 1. Use `mutate()`, `select()`, and `na.omit()` to create a new data frame with
    the `year`, `species_id`, and weight **in kilograms** of each individual,

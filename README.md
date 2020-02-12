@@ -92,6 +92,8 @@ Topic: Transforming Data in R
 Readings:   
 [R for Data Science - Transforming  Data](https://r4ds.had.co.nz/transform.html)
 
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture4-dplyr.md)
+
 Additional readings:   
 [Data Carpentry: dplyr](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
 
