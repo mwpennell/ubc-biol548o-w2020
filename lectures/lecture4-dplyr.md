@@ -2,7 +2,7 @@
 
 * We will be working with data from the Portal Project.
     * Long-term experimental study of small mammals in Arizona.
-    * Download `surveys`, `species`, and `plots` from `Datasets` into folder.
+    * Download `surveys`, `species`, and `plots` from `data` into folder.
     * Need to know where the data is: Right click -> `Save link as`.
 
 * Start/open a project (modeling good practice)
@@ -46,7 +46,7 @@ plots <- read_csv("plots.csv")
 * Modern data manipulation library for R
 
 ```
-surveys <- read.csv("surveys.csv")
+surveys <- read_csv("surveys.csv")
 ```
 
 * Select a subset of columns.
@@ -91,6 +91,33 @@ surveys_plus <- mutate(surveys,
 surveys <- mutate(surveys,
                   hindfoot_length_cm = hindfoot_length / 10)
 ```
+
+### Exercise 1
+
+Dr. X is interested in studying the factors controlling the size and
+carbon storage of shrubs. She has conducted an experiment looking at the effect
+of three different treatments on shrub volume at four different locations. She
+has placed the data file on the web for you to download:
+
+* [Shrub dimensions data]({{ site.baseurl }}/data/shrub-volume-data.csv)
+
+Download this into your `data` folder and get familiar with the data by
+importing it using `read_csv()` and then:
+
+1. Check the column names in the data using the function `names()`.
+2. Use `str()` to show the structure of the data frame and its individual 
+   columns.
+3. Print out the first few rows of the data using the function `head()`.
+
+   *Use `dplyr` to complete the remaining tasks.*
+4. Select the data from the length column and print it out.
+5. Select the data from the site and experiment columns and print it out.
+6. Filter the data for all of the plants with heights greater than 5 and
+   print out the result.
+7. Create a new data frame called `shrub_data_w_vols` that includes all of the
+   original data and a new column containing the volumes, and display it.
+   
+Add, commit, and push your code to GitHub.
 
 ### Basic aggregation
 
@@ -163,7 +190,30 @@ ds_weight_by_year <- summarize(ds_data_by_year,
                                avg_weight = mean(weight, na.rm = TRUE))
 ```
 
-> Do [Portal Data Manipulation Exercise 1-2]({{ site.baseurl }}/exercises/Portal-data-manip-R)
+### Exercise 2
+
+Download a copy of the
+[Portal Teaching Database surveys table](https://ndownloader.figshare.com/files/2292172)
+and load it into R using `read.csv()`.
+
+***Do not use pipes for this exercise.***
+
+1. Use `select()` to create a new data frame with just the `year`, `month`,
+   `day`, and `species_id` columns in that order.
+2. Use `mutate()`, `select()`, and `na.omit()` to create a new data frame with
+   the `year`, `species_id`, and weight **in kilograms** of each individual,
+   with no null weights. The weight in the table is given in grams so you will
+   need to divide it by 1000.
+3. Use the `filter()` function to get all of the rows in the data frame for the
+   species ID `SH`.
+4. Use the `group_by()` and `summarize()` functions to get a count of the number
+   of individuals in each species ID.
+5. Use the `group_by()` and `summarize()` functions to get a count of the number
+   of individuals in each species ID in each year.
+6. Use the `filter()`, `group_by()`, and `summarize()` functions to get the mean
+   mass of species `DO` in each year.
+   
+Add, commit, and push your code to GitHub.
 
 #### Pipes
 
@@ -193,7 +243,6 @@ mean(x, na.rm = TRUE)
 x %>% mean(na.rm = TRUE)
 ```
 
-* *Questions?*
 
 ```
 surveys %>%
@@ -206,6 +255,27 @@ ds_weight_by_year <- surveys %>%
   group_by(year) %>%
   summarize(avg_weight = mean(weight, na.rm = TRUE))
 ```
+
+### Exercise 3 
+
+Using the Portal dataset you downloaded in Exercise 2, use pipes (`%>%`) to combine the following operations to manipulate the data.
+
+1. Use `mutate()`, `select()`, and `na.omit()` to create a new data frame with
+   the `year`, `species_id`, and weight **in kilograms** of each individual,
+   with no null weights.
+2. Use the `filter()` and `select()` to get the `year`, `month`, `day`, and
+   `species_id` columns for all of the rows in the data frame where `species_id`
+   is `SH`.
+3. Use the `group_by()` and `summarize()` functions to get a count of the number
+   of individuals in each species ID.
+4. Use the `group_by()` and `summarize()` functions to get a count of the number
+   of individuals in each species ID in each year.
+5. Use the `filter()`, `group_by()`, and `summarize()` functions to get the mean
+   mass of species `DO` in each year.
+   
+Add, commit, and push your code to GitHub
+
+
 
 ### Multiple filter conditions
 
