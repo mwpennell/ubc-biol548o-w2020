@@ -2,24 +2,19 @@
 
 * We will be working with data from the Portal Project.
     * Long-term experimental study of small mammals in Arizona.
-    * Download `surveys`, `species`, and `plots` from `data` into folder of the class repository and put them in the `data` folder of your repository.
+    * Download `surveys` from `data` into folder of the class repository and put it in the `data` folder of your repository.
     
-
-* Dataset is composed of three tables.
-* Load these into `R` using `read_csv()`.
+* Load this into `R` using `read_csv()`.
 
 ```
 surveys <- read_csv("data/surveys.csv")
-species <- read_csv("data/species.csv")
-plots <- read_csv("data/plots.csv")
+
 ```
 
 * Display data by clicking on it in `Environment`
 * Three tables
     * `surveys` - main table, one row for each rodent captured, date on date,
       location, species ID, sex, and size
-    * `species` - latin species names for each species ID + general taxon
-    * `plots` - information on the experimental manipulations at the site
 
 * Good tabular data structure -- keep it **tidy**
     * One table per type of data
