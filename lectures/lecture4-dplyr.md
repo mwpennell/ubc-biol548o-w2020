@@ -40,6 +40,8 @@ For the following we are going to be using multiple packages from the tidyverse 
 
 **Cool trick:** you can call functions from a package without loading it using the `::` notation. For example,`dplyr::select()` allows you to use the `select()` function even if `dplyr` isn't loaded. Why would you want to do this? First, it saves memory (potentially important if you are loading in a ton of packages and data) and second, it is useful if multiple packages have functions with the same names (which happens more often than you might think).
 
+**Even cooler trick:** if you feel like living on the edge, you can even call hidden, internal functions from packages using `:::`. Typically only a very small subset of functions are **exported** into what is known as the `NAMESPACE`. Each of these functions will hopefully have documentation and can be called directly once you've loaded the library. But all the little functions that are called by the visible functions are still there and available to use; unfortunately these are not documented so you have to have an idea of what the function does.
+
 ### Basic `dplyr`
 
 * Modern data manipulation library for R
