@@ -18,7 +18,7 @@ While tidy data is a good ideal to strive towards, **untidy** data abounds. In f
 on ourselves, because untidy formats are more attractive for data entry
 or examination. So how do you make **untidy** data **tidy**?
 
-Note: the following is adapted from [a lesson developed by Jenny Bryan](https://github.com/jennybc/lotr-tidy) 
+Note: the following is adapted from [a lesson developed by Jenny Bryan](https://github.com/jennybc/lotr-tidy). 
   
 ## Import untidy Lord of the Rings data
   
