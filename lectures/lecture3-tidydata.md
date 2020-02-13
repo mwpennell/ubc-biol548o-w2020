@@ -17,6 +17,8 @@ Third, you should always leave your data pretty much as you found it in your spr
 While tidy data is a good ideal to strive towards, **untidy** data abounds. In fact, we often inflict it
 on ourselves, because untidy formats are more attractive for data entry
 or examination. So how do you make **untidy** data **tidy**?
+
+Note: the following is adapted from [a lesson developed by Jenny Bryan](https://github.com/jennybc/lotr-tidy) 
   
 ## Import untidy Lord of the Rings data
   
