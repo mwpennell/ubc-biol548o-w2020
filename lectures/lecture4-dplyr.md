@@ -12,8 +12,8 @@ surveys <- read_csv("data/surveys.csv")
 ```
 
 * Display data by clicking on it in `Environment`
-* Three tables
-    * `surveys` - main table, one row for each rodent captured, date on date,
+
+* `surveys` - main table, one row for each rodent captured, date on date,
       location, species ID, sex, and size
 
 * Good tabular data structure -- keep it **tidy**
