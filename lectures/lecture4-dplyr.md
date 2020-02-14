@@ -170,7 +170,7 @@ species_weight <- summarize(surveys_by_species,
 * Can use `na.omit()` to drop rows with `NA` or `NaN` in any column
 
 ```
-na.omit(surveys$weight)
+na.omit(species_weight)
 ```
 
 #### Intermediate variables
