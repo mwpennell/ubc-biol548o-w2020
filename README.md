@@ -104,6 +104,8 @@ Topic: Relational databases
 Readings:    
 [R for Data Science - Relational Data](https://r4ds.had.co.nz/relational-data.html)
 
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture5-relationaldata.md)
+
 Additional readings:   
 [Data Carpentry - Working with SQL databases in R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
