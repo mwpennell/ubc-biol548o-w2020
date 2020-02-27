@@ -113,6 +113,9 @@ Additional readings:
 
 Topic: Working with text (or, why regular expressions are your best friends)
 
+Readings:  
+[R for Data Science - Strings](https://r4ds.had.co.nz/strings.html)
+
 ### Lecture 7 - Mar 3
 
 Topic: Automating analyses 
