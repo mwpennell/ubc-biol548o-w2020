@@ -1,4 +1,4 @@
-n this tutorial, we will use the Gapminder data as an example to demonstrate using regular expression in R. First, let's start off by cloning the class repository, getting the list of file names with `list.files()`, and load the Gapminder dataset into R. 
+In this tutorial, we will use the Gapminder data as an example to demonstrate using regular expression in R. First, let's start off by loading the Gapminder dataset into R. 
 
 We will also need to use some functions from the **stringr** package. It provids a clean, modern alternative to common string operations, and is sometimes easier to remember and use than R basic string functions.
 
