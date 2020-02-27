@@ -1,28 +1,13 @@
-n this tutorial, we will use the Gapminder data and file names in our [class repository](https://github.com/STAT545-UBC/STAT545-UBC.github.io) as examples to demonstrate using regular expression in R. First, let's start off by cloning the class repository, getting the list of file names with `list.files()`, and load the Gapminder dataset into R. 
+n this tutorial, we will use the Gapminder data as an example to demonstrate using regular expression in R. First, let's start off by cloning the class repository, getting the list of file names with `list.files()`, and load the Gapminder dataset into R. 
 
-We will also need to use some functions from the [stringr](https://github.com/hadley/stringr) package. It provids a clean, modern alternative to common string operations, and is sometimes easier to remember and use than R basic string functions. If you have not done so yet, install the package.   
-
-```{r install, eval=FALSE}
-install.packages("stringr")
-```
+We will also need to use some functions from the **stringr** package. It provids a clean, modern alternative to common string operations, and is sometimes easier to remember and use than R basic string functions.
 
 ```{r input}
 library(stringr)
-files <- list.files()
-head(files)
-gDat <- read.delim("gapminderDataFiveYear.txt")
+install.packages("gapminder")
+gDat <- gapminder::gapminder
 str(gDat)
 ```
-
-Now we can use some string functions to extract certain filenames, say all documents on `dplyr`. We can use `grep()` function to identify filenames including the string `dplyr`. If we set the argument `value = TRUE`, `grep()` returns the matches, while `value = FALSE` returns their indices. The `invert` argument let's you get everything BUT the pattern you specify. `grepl()` is a similar function but returns a logical vector. See [here](http://www.rdocumentation.org/packages/base/functions/grep) for more information.    
-
-```{r simple}
-grep("dplyr", files, value = TRUE)
-grep("dplyr", files, value = FALSE)
-grepl("dplyr", files)
-```
-
-What if we wanted to extract all homework files on `dplyr`? We would need a way to specify matching a string containing `hw` and then something and then `dplyr`. This is where regular expressions come in handy.   
 
 ## String functions related to regular expression
 Regular expression is a pattern that describes a specific set of strings with a common structure. It is heavily used for string matching / replacing in all programming languages, although specific syntax may differ a bit. It is truly the heart and soul for string operations. In R, many string functions in `base` R as well as in `stringr` package use regular expressions, even Rstudio's search and replace allows regular expression, we will go into more details about these functions later this week:       
@@ -80,12 +65,9 @@ grep("ac{2,}b", strings, value = TRUE)
 grep("ac{2,3}b", strings, value = TRUE)
 ```
 
-#### Exercise  
-Find all countries with `ee` in Gapminder using quantifiers.   
+#### Exercise 1 
+Write a line of code to find all countries with `ee` in Gapminder **using quantifiers**. Add, commit, and push. 
 
-```{r ex_quant, echo = FALSE}
-grep("e{2}", levels(gDat$country), value = TRUE)
-```
 
 ### Position of pattern within the string 
 
@@ -102,12 +84,12 @@ grep("ab$", strings, value = TRUE)
 grep("\\bab", strings, value = TRUE)
 ```
 
-#### Exercise  
-Find all `.txt` files in the repository.   
+#### Exercise 2 
+Write code to find all `.R` files in the main folder of your repository.  
 
-```{r ex_pos, echo = FALSE}
-grep("\\.txt$", files, value = TRUE)
-```
+Hint: use `dir()` to get a vector of all filenames
+
+Add, commit, and push.
 
 ### Operators
 
@@ -129,14 +111,12 @@ grep("abc|abd", strings, value = TRUE)
 gsub("(ab) 12", "\\1 34", strings)
 ```
 
-#### Excercise
+#### Excercise 3.
 
-Find countries in Gapminder with letter `i` or `t`, and ends with `land`, and replace `land` with `LAND` using backreference.  
+Write code to find countries in Gapminder with letter `i` or `t`, and ends with `land`, and replace `land` with `LAND` using backreference. 
 
-```{r ex_operator, echo = F}
-countries <- gsub("(.*[it].*)land$", "\\1LAND", levels(gDat$country), ignore.case = T)
-grep("LAND", countries, value = TRUE)
-```
+Add, commit, and push.
+
 
 ### Character classes
 
@@ -189,94 +169,12 @@ grep(pattern, strings, value = TRUE)
 grep(pattern, strings, value = TRUE, ignore.case = TRUE)
 ```
 
-### Exercise
+### Exercise 4
 
 Find continents in Gapminder with letter `o` in it.  
 
-```{r ex_case, echo=F}
-grep("o", levels(gDat$continent), ignore.case = TRUE, value = TRUE)
-```
+Add, commit, and push.
 
-## Examples
-
-As an example, let's try to integrate everything together, and find all course materials on `dplyr` and extract the topics we have covered. These files all follow our naming strategy: `block` followed by 3 digits, then `_`, then topic. As you can see from the [topic index](http://stat545-ubc.github.io/topics.html), we had two blocks on `dplyr`: the [intro](http://stat545-ubc.github.io/block009_dplyr-intro.html), and [verbs for a single dataset](http://stat545-ubc.github.io/block010_dplyr-end-single-table.html). We'll try to extract the `.rmd` filenames for these blocks. To make the task a bit harder, I also put a few fake files inside the repository that don't quite match our naming strategy!    
-
-We know that the filename should have `block` and `dplyr` in it, and is a Rmd file, so what if we just put these three parts together? 
-
-```{r example_1}
-pattern <- "block.*dplyr.*rmd"
-grep(pattern, files, value = TRUE)
-```
-
-Apart from the two files we wanted, we also got three fake ones: `r paste0(list.files(pattern = "fake"), collapse = ", ")`. Looks like our pattern is not stringent enough. The first fake file does not have 3 digits after `block`, second one does not start with `block`, and last one has `.txt` after `rmd`. So let's try to fix that: 
-
-```{r example_2}
-pattern <- "^block\\d{3}_.*dplyr.*rmd$"
-(dplyr_file <- grep(pattern, files, value = TRUE))
-```
-
-Now we have the two file names stored in `dplyr_file`, let's try to extract the topics out. 
-
-One way to do that is to use a substitution function like `sub()`, `gsub()`, or `str_sub()` to replace anything before and after the topic with empty strings: 
-
-```{r example_3}
-(dplyr_topic <- gsub("^block\\d{3}_.*dplyr-", "", dplyr_file))
-(dplyr_topic <- gsub("\\.rmd", "", dplyr_topic))
-```
-
-Alternatively, instead of using `grep()` + `gsub()`, we can use `str_match()`. As mentioned above, this function will give specific matches for patterns enclosed with `()` operator. We just need to reconstruct our regular expression to specify the topic part:    
-
-```{r example_4}
-pattern <- "^block\\d{3}_.*dplyr-(.*)\\.rmd$"
-(na.omit(str_match(files, pattern)))
-```
-
-The second column of the result data frame gives the topic we needed.  
-
-### Some more advanced string functions     
-
-There are some more advanced string functions that are somewhat related to regular expression, like splitting a string, get a subset of a string, pasting strings together etc. These functions are very useful for data cleaning, and we will get into more details about them later this week. Here is a short introduction with above example.   
-
-From above example, we got two topics on `dplyr`: `r cat(dplyr_topic, sep = ",")`. We can use `strsplit()` function to split the second one, `r cat(dplyr_topic[2])`, into words. The second argument `split` is a regular expression used for splitting, and the function will return a list. We can use `unlist()` function to convert the list into a character vector. Or an alternative function `str_split_fixed()` will return a data frame.   
-
-<!-- *JB: what about something based on `strsplit(dplyr_file, "_")`?* -->
-
-```{r strsplit}
-(topic_split <- unlist(strsplit(dplyr_topic[2], "-")))
-(topic_split <- str_split_fixed(dplyr_topic[2], "-", 3)[1, ])
-```
-
-We can also use `paste()` or `paste0()` functions to put them back together. `paste0()` function is equivalent to `paste()` with `sep = ""`. We can use `collapse = "-"` argument to concatenate a character vector into a string:        
-
-```{r paste}
-paste(topic_split, collapse = "-")
-```
-
-Another useful function is `substr()`. It can be used to extract a part of a string with start and end positions. For example, to extract the first three letters in `dplyr_topic`:     
-
-```{r substr}
-substr(dplyr_topic, 1, 3)
-```
-
-### Exercise
-Get all markdown documents on peer review and extract the specific topics.        
-
-> Hint: file names should start with `peer-review`.   
-```{r ex_final, echo = FALSE}
-cat(na.omit(str_match(files, "peer-review.*_(.*)\\.md")[, 2]), sep = ",  ")
-```
-
-## Regular expression vs shell globbing
-
-The term globbing in shell or Unix-like environment refers to pattern matching based on wildcard characters. A wildcard character can be used to substitute for any other character or characters in a string. Globbing is commonly used for matching file names or paths, and has a much simpler syntax. It is somewhat similar to regular expressions, and that's why people are often confused between them. Here is a list of globbing syntax and their comparisons to regular expression:   
-
-  * `*`: matches any number of unknown characters, same as `.*` in regular expression.  
-  * `?`: matches one unknown character, same as `.` in regular expression.  
-  * `\`: same as regular expression.  
-  * `[...]`: same as regular expression.  
-  * `[!...]`: same as `[^...]` in regular expression.   
-
-<!-- *JB: I know that I've been burned by confusing regular expressions and globbing. Can you recall where this can hurt you? I can't right now! But we included this to alert them to something and I wish we could clarify what to watch out for.*  -->
 
 ## Resources
 
