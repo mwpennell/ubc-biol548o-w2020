@@ -113,12 +113,19 @@ Additional readings:
 
 Topic: Working with text (or, why regular expressions are your best friends)
 
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture6-regex.md)
+
 Readings:  
 [R for Data Science - Strings](https://r4ds.had.co.nz/strings.html)
 
 ### Lecture 7 - Mar 3
 
-Topic: Automating analyses 
+Topic: Scripting
+
+Readings:   
+[R for Data Science - Functions](https://r4ds.had.co.nz/functions.html)
+
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture7-scripting.md)
 
 ### Lecture 8 - Mar 5
 
