@@ -19,6 +19,7 @@
     * If it occurs in more than one place, it will eventually be wrong somewhere.
 * Functions are written to be reusable.
 
+
 ### Function basics
 
 ```
@@ -116,7 +117,7 @@ get_mass_from_length_theropoda <- function(length){
 }
 ```
 
-1. In your file ``lecture7-exercises.R`, add a comment to this function so that you know what it does.
+1. In your file `lecture7-exercises.R`, add a comment to this function so that you know what it does.
 2. Use this function to print out the mass of a Spinosaurus that is 16 m long
    based on its reassembled skeleton.
 3. Create a new version of this function called `get_mass_from_length()` that
