@@ -120,7 +120,7 @@ Readings:
 
 ### Lecture 7 - Mar 3
 
-Topic: Scripting
+Topic: Scripting - Part I - Functions
 
 Readings:   
 [R for Data Science - Functions](https://r4ds.had.co.nz/functions.html)
@@ -129,7 +129,12 @@ Readings:
 
 ### Lecture 8 - Mar 5
 
-Topic: Open class (RMarkdown? R packages?)
+Topic: Scripting - Part II - Loops and conditionals
+
+Readings:   
+[R for Data Science - Iteration](https://r4ds.had.co.nz/iteration.html)
+
+[Lecture](https://github.com/mwpennell/ubc-biol548o-w2020/blob/master/lectures/lecture8-scripting2.md)
 
 
 ## Additional resources
