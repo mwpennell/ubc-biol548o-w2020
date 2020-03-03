@@ -46,7 +46,29 @@ site[c(TRUE, TRUE, FALSE, FALSE)]
 
 * Used in `dplyr::filter()` and other methods for subsetting data
 
-> Do Tasks 1-4 in [Choice Operators]({{ site.baseurl }}/exercises/Making-choices-choice-operators-R).
+### Exercise 1
+Create the following variables.
+
+```
+w <- 10.2
+x <- 1.3
+y <- 2.8
+z <- 17.5
+colors <- c("red", "blue", "green")
+masses <- c(45.2, 36.1, 27.8, 81.6, 42.4)
+dna1 <- "attattaggaccaca"
+dna2 <- "attattaggaacaca"
+```
+
+In a new file `lecture8-exercises.R` write code that can prints whether or not the following statements are `TRUE` or `FALSE`.
+
+1. `w` is greater than 10
+2. `"green"` is in `colors`
+3. `x` is greater than `y`
+4. Each value in `masses` is greater than 40.
+
+Add, commit, and push.
+ 
 
 ### `if` statements
 
@@ -97,7 +119,22 @@ if (veg_type == "tree") {
 mass
 ```
 
-> Do Task 1 in [Basic If Statements]({{ site.baseurl }}/exercises/Making-choices-basic-if-statements-R).
+### Exercise 2
+
+In your `lecture8-exercises.R` file, complete (i.e., copy into your code and them modify) the following `if`
+   statement so that if `age_class` is equal to "sapling" it sets `y <- 10`.
+
+```r
+age_class = "sapling"
+if (){
+  
+}
+y
+```
+
+Add, commit, and push.
+
+### Alternative conditioning
 
 * Often want to chose one of several options
 * Can add more conditions and associated actions with `else if`
@@ -132,7 +169,33 @@ if (veg_type == "tree") {
 mass
 ```
 
-> Do Tasks 2-3 in [Basic If Statements]({{ site.baseurl }}/exercises/Making-choices-basic-if-statements-R).
+### Exercise 3
+
+1. Complete the following `if` statement so that if `age_class` is equal to
+   "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it
+   sets `y <- 5`.
+
+```r
+age_class = "seedling"
+if (){
+  
+}
+y
+```
+
+2. Complete the following `if` statement so that if `age_class` is equal to
+   "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it
+   sets `y <- 5` and if `age_class` is something else then it sets the value of
+   `y <- 0`.
+
+```r
+age_class = "adult"
+if (){
+  
+}
+y
+```
+Add, commit, and push.
 
 ### Multiple ifs vs else if
 
