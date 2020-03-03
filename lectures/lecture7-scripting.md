@@ -68,31 +68,6 @@ Write a function that converts pounds to grams (*there are 453.592 grams in one 
 
 In a new document `lecture7-exercises.R`, write code to do this. Add, commit, and push.
 
-
-* Treat functions like a black box
-  * *Draw a box on board showing inputs->function->outputs*
-  * The only things the function knows about are the inputs we pass it
-  * The only thing the program knows about the function is the output it
-    produces
-
-* Walk through function execution (using debugger)
-    * Call function
-	* Assign 0.8 to length, 1.6 to width, and 2.0 to height inside function
-	* Calculate volume
-	* Send the volume back as output
-	* Store it in `shrub_vol`
-
-* Treat functions like a black box.
-    * Can't access a variable that was created in a function
-        * `> volume`
-        * `Error: object 'width' not found`
-    * Or an argument by name
-        * `> width`
-        * `Error: object 'width' not found`
-    * 'Global' variables can influence function, but should not.
-        * Very confusing and error prone to use a variable that isn't passed in
-          as an argument
-
 ### Exercise 2
 
 The length of an organism is typically strongly correlated with its body
@@ -260,3 +235,54 @@ est_shrub_mass_dim(0.8, 1.6, 2.0)
 * Can be helpful to clearly see what is a function
 * Can have RStudio highlight them
 *  Global Options -> Code -> Display -> Highlight R function calls
+
+### Some notes on R Style
+
+### Whitespace
+
+* Indentation what the brain recognizes, use it regardless of language (and braces)
+* 2 space indents
+
+```
+stuff <- data %>%
+filter() %>%
+select()
+things <- 2
+```
+
+```
+stuff <- data %>%
+  filter() %>%
+  select()
+things <- 2
+```
+
+* Spaces after commas and around operators
+
+```
+range(x, x + 10)
+```
+
+### Naming
+
+* snake_case
+* Descriptive: `estimate_biomass`
+* Not too long: `estimate_biomass_using_hanson_method`
+* Use whole words for accessibility
+
+### Long lines
+
+* Lines < 80 characters long
+* Add an indicator for this in RStudio
+    * Tools -> Global Options -> Code -> Display -> Show Margin
+* Use implied line continuation
+    * If it's clear that a line isn't finished R will go on to the next line
+
+```
+site_data <- data.frame(
+  site_id = c(1, 2, 3, 4),
+  type = c('control', 'control', 'experiment', 'experiment')
+)
+```
+
+* Read top to bottom
