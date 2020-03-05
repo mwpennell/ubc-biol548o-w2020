@@ -1,4 +1,8 @@
-### Conditionals
+## Conditionals and iteration
+
+Today's lecture is about two programming techniques that I find to be extremely useful and will hopefully become an intergral part of your data science arsenal: conditions and iteration.
+
+## Conditionals
 
 * Usage: 
     * Generate `"logical"`:
@@ -84,9 +88,9 @@ if (the conditional statement is TRUE ) {
 * Example
 
 ```r
-x = 6
+x <- 6
 if (x > 5){
-  x = x^2
+  x <- x^2
 }
 x
 ```
@@ -98,15 +102,15 @@ x
 ```r
 x = 4
 if (x > 5){
-  x = x^2
+  x <- x^2
 }
 x
 ```
 
 * `x > 5` is `FALSE`, so the code in the `if` doesn't run
 * `x` is still 4
-* This is *not* a function, so everything that happens in the if statement
-  influences the global environment
+* This is *not* a function, so *everything that happens in the if statement influences the global environment* (remember scoping: what happens in a function stays in a function)
+
 
 * Different mass calculations for different vegetation types
 
@@ -121,8 +125,7 @@ mass
 
 ### Exercise 2
 
-In your `lecture8-exercises.R` file, complete (i.e., copy into your code and them modify) the following `if`
-   statement so that if `age_class` is equal to "sapling" it sets `y <- 10`.
+In your `lecture8-exercises.R` file, complete (i.e., copy into your code and them modify) the following `if` statement so that if `age_class` is equal to "sapling" it sets `y <- 10`.
 
 ```r
 age_class = "sapling"
@@ -171,22 +174,17 @@ mass
 
 ### Exercise 3
 
-1. Complete the following `if` statement so that if `age_class` is equal to
-   "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it
-   sets `y <- 5`.
+1. In your R file, complete the following `if` statement so that if `age_class` is equal to "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it sets `y <- 5`.
 
 ```r
-age_class = "seedling"
+age_class <- "seedling"
 if (){
   
 }
 y
 ```
 
-2. Complete the following `if` statement so that if `age_class` is equal to
-   "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it
-   sets `y <- 5` and if `age_class` is something else then it sets the value of
-   `y <- 0`.
+2. Complete the following `if` statement so that if `age_class` is equal to "sapling" it sets `y <- 10` and if `age_class` is equal to "seedling" it sets `y <- 5` and if `age_class` is something else then it sets the value of `y <- 0`.
 
 ```r
 age_class = "adult"
@@ -224,7 +222,7 @@ if (x > 2){
 }
 ```
 
-### Convert to function
+### Wrap conditionals within a function
 
 ```r
 est_mass <- function(volume, veg_type){
@@ -244,14 +242,32 @@ est_mass(1.6, "grass")
 est_mass(1.6, "shrub")
 ```
 
-> Do [Size Estimates by Name]({{ site.baseurl }}/exercises/Making-choices-size-estimates-by-name-R).
+### Exercise 4
 
-### Automatically extracting functions
+To make it even easier to work with your dinosaur size estimation functions that you wrote last class, you
+decide to create a function that lets you specify which dinosaur group you need to estimate the size of by name and then have the function automatically choose
+the right parameters.
 
-* Can pull code out into functions
-* Highlight the code
-* Code -> Extract Function
-* Provide a name for the function
+Create a new function `get_mass_from_length_by_name()` that takes two arguments,
+the `length` and the name of the dinosaur group. Inside this function use
+`if`/`else if`/`else` statements to check to see if the name is one of the
+following values and if so set `a` and `b` to the appropriate values.
+
+* *Stegosauria*:  `a` = `10.95` and `b` = `2.64` ([Seebacher 2001](http://www.jstor.org/stable/4524171)).
+* *Theropoda*:  `a` = `0.73` and `b` = `3.63` ([Seebacher 2001](http://www.jstor.org/stable/4524171)).
+* *Sauropoda*:  `a` = `214.44` and `b` = `1.46` ([Seebacher 2001](http://www.jstor.org/stable/4524171)).
+
+If the name is not any of these values set `a` and `b` to `NA`.
+
+Once the function has assigned `a` and `b` have it run `get_mass_from_length()`
+with the appropriate values and return the estimated mass.
+
+Run the function for:
+
+1. A *Stegosauria* that is 10 meters long.
+2. A *Theropoda* that is 8 meters long.
+3. A *Sauropoda* that is 12 meters long.
+4. A *Ankylosauria* that is 13 meters long.
 
 ### Nested conditionals
 
@@ -284,10 +300,7 @@ est_mass(1.6, "shrub", age = 5)
 * If so does one calculation, if not does another
 * But nesting can be difficult to follow so try to minimize it
 
-> * Did you notice anything weird while finishing the Choice Operations exercise?
-> * Take a closer look at item 4.
-
-### Floating point
+### Two things that might trip you up
 
 ```r
 > x <- 1.3
@@ -310,10 +323,20 @@ False
 2.8000000000000003
 ```
 
-## Testing equality with decimals
-
 * `round(x * 2 + 0.2, 1) == y`
 * `all.equal(x * 2 + 0.2, y)`
+
+
+## Iteration
+
+Iteration basically just means running a function multiple times. For example, you might want perform the same operation across multiple columns of your dataset but want to avoid having to copy and paste code over and over again. (At some point, the copy and paste approach becomes totally unworkable; typical phylogenetic analyses, for example, repeat the same calculations hundreds of millions of times!)
+
+Iteration in R can, broadly speaking, be done in three different ways:
+* loops (for loops and while loops)
+* apply functions 
+* map functions (in the *purrr* package, which is part of the *tidyverse*)
+
+
 
 ### Basic `for` loop
 
@@ -356,7 +379,55 @@ for (volume in volumes){
 }
 ```
 
-> Do Tasks 1 & 2 in [Basic For Loops]({{ site.baseurl }}/exercises/Loops-basic-for-loops-R/).
+### Exercise 5
+
+1\. The code below prints the numbers 1 through 5 one line at a time. Modify it to print the numbers 2 through 16.
+
+```r
+for (i in 1:5){
+  print(i)
+}
+```
+
+2\. The code below prints the numbers 1 through 5 one line at a time. Modify it to print each of these numbers multiplied by 3.
+
+```r
+for (i in 1:5){
+  print(i)
+}
+```
+
+3\. Complete the code below so that it prints out the name of each bird one line at a time.
+
+```r
+birds = c('robin', 'woodpecker', 'blue jay', 'sparrow')
+for (i in 1:length(_________)){
+  print(birds[__])
+}
+```
+
+4\. Complete the code below so that it stores one area for each radius.
+
+```r
+radius <- c(1.3, 2.1, 3.5)
+areas <- vector(_____ = "numeric", length = ______)
+for (__ in 1:length(________)){
+  areas[__] <- pi * radius[i] ^ 2
+}
+areas
+```
+
+5\. Complete the code below to calculate an area for each pair of `lengths` and `widths`, store the areas in a vector, and after they are all calculated print them out: 
+
+```r
+lengths = c(1.1, 2.2, 1.6)
+widths = c(3.5, 2.4, 2.8)
+areas <- vector(length = __________)
+for (i in _____) {
+  areas[__] <- lengths[__] * widths[__]
+}
+areas
+```
 
 ### Looping with an index & storing results
 
@@ -393,10 +464,6 @@ for (i in 1:length(volumes)){
 masses
 ```
 
-* Walk through iteration in debugger
-
-> Do Tasks 3-4 in [Basic For Loops]({{ site.baseurl }}/exercises/Loops-basic-for-loops-R/).
-
 * Looping with an index also allows us to access values from multiple vectors
 
 
@@ -409,169 +476,3 @@ for (i in seq_along(volumes)){
    masses[i] <- mass
 }
 ```
-
-### Looping over files
-
-* Repeat same actions on many similar files
-* Get names of satellite collar location files
-
-```r
-download.file("http://www.datacarpentry.org/semester-biology/data/locations-2016-01.zip", 
-              "locations.zip")
-unzip("locations.zip")
-data_files = list.files(pattern = "locations-.*.txt", 
-                        full.names = TRUE)
-```
-
-* Calculate the number of observations in each file
-
-```r
-results <- vector(mode = "integer", length = length(data_files))
-for (i in 1:length(data_files){
-  data <- read.csv(data_files[i])
-  count <- nrow(data)
-  results[i] <- count
-}
-```
-
-* Store output in a data frame instead of a vector
-* Associate the file name with the count
-
-```r
-results <- data.frame(file_name = charcter(length(data_files))
-                      count = integer(length(data_files)),
-                      stringsAsFactors = FALSE)
-for (i in 1:length(data_files){
-  data <- read.csv(data_files[i])
-  count <- nrow(data)
-  results$file_name[i] <- data_files[i]
-  results$count[i] <- count
-}
-results
-```
-
-> Do [Multiple-file Analysis]({{ site.baseurl }}/exercises/Loops-multi-file-analysis-R/).
-> **Exercise uses different collar data**
-
-* With `apply`
-
-```r
-get_counts <- function(data_file_name){
-  file <- read.csv(data_file_name)
-  count <- nrow(file)
-  return(count)
-}
-
-results <- unlist(lapply(collar_data_files, get_counts))
-```
-
-* How to choose when there are many ways to do the same thing?
-  * Speed
-    * Matters in few cases
-    * Hard to identify bottlenecks
-  * Readability
-    * Easy to understand
-  * Personal preference
-* There is no “right” way to do anything
-
-### Subsetting Data (optional)
-
-* Loops can subset in ways that are difficult with things like `group_by`
-* Look at some data on trees from the National Ecological Observatory Network
-
-```r
-library(ggplot2)
-library(dplyr)
-
-neon_trees <- read.csv('data/HARV_034subplt.csv')
-ggplot(neon_trees, aes(x = easting, y = northing)) +
-  geom_point()
-```
-
-* Look at a north-south gradient in number of trees
-* Need to know number of trees in each band of y values
-* Start by defining the size of the window we want to use
-  * Use the grid lines which are 2.5 m
-
-```r
-window_size <- 2.5
-```
-
-* Then figure out the edges for each window
-
-```r
-south_edges <- seq(4713095, 4713117.5, by = window_size)
-north_edges <- south_edges + window_size
-```
-
-* But we don't want to go all the way to the far edge
-
-```r
-south_edges <- seq(4713095, 4713117.5 - window_size, by = window_size)
-north_edges <- south_edges + window_size
-```
-
-* Set up an empty data frame to store the output
-
-```r
-counts <- vector(mode = "numeric", length = length(left_edges))
-```
-
-* Look over the left edges and subset the data occuring within each window
-
-```r
-for (i in 1:length(south_edges)) {
-  data_in_window <- filter(neon_trees, northing >= south_edges[i], northing < north_edges[i])
-  counts[i] <- nrow(data_in_window)
-}
-counts
-```
-
-### Nested Loops (optional)
-
-* Sometimes need to loop over multiple things in a coordinate fashion
-* Pass a window over some spatial data
-* Look at full spatial pattern not just east-west gradient
-
-* Basic nested loops work by putting one loop inside another one
-
-```r
-for (i in 1:10) {
-  for (j in 1:5) {
-    print(paste("i = " , i, "; j = ", j))
-  }
-}
-```
-
-* Loop over x and y coordinates to create boxes
-* Need top and bottom edges
-
-```r
-east_edges <- seq(731752.5, 731772.5 - window_size, by = window_size)
-west_edges <- east_edges + window_size
-
-```
-
-* Redefine out storage
-
-```r
-output <- matrix(nrow = length(south_edges), ncol = length(east_edges))
-```
-
-```r
-for (i in 1:length(south_edges)) {
-  for (j in 1:length(east_edges)) {
-    data_in_window <- filter(neon_trees,
-                            northing >= south_edges[i], northing < north_edges[i],
-                            easting >= left_edges[j], easting < right_edges[j],)
-    output[i, j] <- nrow(data_in_window)
-  }
-}
-output
-```
-
-### Sequence along (optional)
-
-* `seq_along()` generates a vector of numbers from 1 to `length(volumes)`
-
-> Assign the rest of the exercises.
