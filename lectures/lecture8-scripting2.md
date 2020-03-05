@@ -269,6 +269,8 @@ Run the function for:
 3. A *Sauropoda* that is 12 meters long.
 4. A *Ankylosauria* that is 13 meters long.
 
+Add, commit, and push.
+
 ### Nested conditionals
 
 * Sometimes decisions are more complicated
@@ -381,6 +383,8 @@ for (volume in volumes){
 
 ### Exercise 5
 
+In your `lecture8-exercises.R` file, complete the following 5 exercises:
+
 1\. The code below prints the numbers 1 through 5 one line at a time. Modify it to print the numbers 2 through 16.
 
 ```r
@@ -428,6 +432,8 @@ for (i in _____) {
 }
 areas
 ```
+Add, commit, and push.
+
 
 ### Looping with an index & storing results
 
