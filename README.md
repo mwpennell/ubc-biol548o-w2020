@@ -129,7 +129,7 @@ Readings:
 
 ### Lecture 8 - Mar 5
 
-Topic: Scripting - Part II - Conditionals and Loops
+Topic: Scripting - Part II - Conditionals and Iteration
 
 Readings:   
 [R for Data Science - Iteration](https://r4ds.had.co.nz/iteration.html)
